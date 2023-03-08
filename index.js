@@ -19,7 +19,7 @@ app.use(express.json());
 
 app.use("/auth", require("./routes/user"));
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5043;
 
-app.listen(5000, () => console.log("Server is running"));
+app.listen(5043, () => console.log("Server is running"));
 module.exports = app;

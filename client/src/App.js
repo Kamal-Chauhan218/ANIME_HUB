@@ -11,15 +11,17 @@ import Navbar from "./components/Navbar";
 
 function App() {
   const initialRef = useRef(true);
-  const [user, setUser] = useState({ name: "User", email: "dummy.gmail.com" });
+  const [user, setUser] = useState();
+
   const getUser = async () => {
-    const res = await axios.get("http://localhost:5000/auth", {
+    const res = await axios.get("http://localhost:5043/auth", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
     setUser(res.data);
   };
+
   useEffect(() => {
     if (!initialRef.current) {
       return;
@@ -32,11 +34,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/register" element={<Register user={user} />} />
-        <Route path="/login" element={<Login user={user} setUser={setUser} />} />
-        <Route path="/" element={<Home user={user} />} />
+        <Route path="/login" element={<Login user={user} getUser={getUser} />} />
+        <Route path="/" element={<Home user={user} setUser={setUser} />} />
         <Route path="/akatsuki" element={<Akatsuki user={user} />} />
         <Route path="/Shop" element={<Shop user={user} />} />
-
       </Routes>
     </BrowserRouter>
   );

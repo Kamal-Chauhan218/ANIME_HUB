@@ -1,18 +1,15 @@
-import { React, useState, useEffect, useRef } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { React } from "react";
 
-import Navbar from "./Navbar";
 import "../styles/navbar.css";
-import Login from "./Login";
 import Description from "./Description";
+import Navbar from "./Navbar";
 
 const Home = (props) => {
   
   return (
     
     <div className="Home">
-      <Navbar user={props} />
+      <Navbar user={props.user} setUser={props.setUser} />
       <Description />
     </div>
   );
